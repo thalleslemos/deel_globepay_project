@@ -48,9 +48,9 @@ This report brings information about transactions chargeback with the following 
 
 The architecture was built using Snowflake and dbt. 
 
-Globepay reports are stored in snowflake as raw data. Then, they are used to build dbt models, which transform and test data, generating a table that is loaded back to Snowflake.
+Globepay reports are stored in snowflake as raw data. Then, they are used to build dbt models, which are transformed tested, generating a table that is loaded back to Snowflake.
 
-The structure of the dbt project models folder followed the [dbt best practices documentation](https://docs.getdbt.com/best-practices/how-we-structure/1-guide-overview):
+The structure of this dbt project's models folder followed the [dbt best practices documentation](https://docs.getdbt.com/best-practices/how-we-structure/1-guide-overview):
 
 - models
    - staging (views)

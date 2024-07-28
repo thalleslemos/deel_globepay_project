@@ -99,4 +99,4 @@ Useful documentation can be found here:
 
 ## 5. Business questions
 
-Some business questions related to this project are answered [here]().
+Some business questions related to this project are answered [here](https://github.com/thalleslemos/deel_globepay_project/blob/main/docs/business_questions.md).

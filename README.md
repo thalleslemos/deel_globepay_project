@@ -48,19 +48,19 @@ This report brings information about transactions chargeback with the following 
 
 The architecture was built using Snowflake and dbt. 
 
-Globepay reports are stored in snowflake as raw data. Then, they are used to build dbt models, which are transformed tested, generating a table that is loaded back to Snowflake.
+Globepay reports are stored in snowflake as raw data. Then, they are used to build dbt models, which are transformed and tested, generating a table that is loaded back to Snowflake.
 
 The structure of this dbt project's models folder followed the [dbt best practices documentation](https://docs.getdbt.com/best-practices/how-we-structure/1-guide-overview):
 
 - models
    - staging (views)
-       - stg_globepay__chargebacks: data from the chargeback report with new column aliases
-       - stg_globepay__transactions: data from the acceptance report with new column aliases and timestamp/date transformation
-       - stg_globepay__transaction_rates: data from the acceptance report with a flattened 
+       - **stg_globepay__chargebacks**: data from the chargeback report with new column aliases
+       - **stg_globepay__transactions**: data from the acceptance report with new column aliases and timestamp/date transformation
+       - **stg_globepay__transaction_rates**: exchange currency data from the acceptance report, but flattened since the source column is a JSON 
     - intermediate (ephemeral)
-       - int_card_transactions
+       - **int_card_transactions**: ephemeral view built by joining the staging models
     - marts (table)
-       - card_transactions
+       - **card_transactions**: table built based on the int_card_transactions with no additional transformation
 
 The staging models are available as views on Snowflake and the mart **card_transactions** is stored as a table. They are in the GLOBEPAY database with two possible schemas:
 - **dbt_production**: schema to be used by data analysts to perform analyzes and build dashboards
@@ -70,7 +70,7 @@ Those schemas are associated to two different dbt profiles that are defined loca
 
 ## 3. Lineage graphs
 
-![image](https://github.com/user-attachments/assets/06217a9b-e21f-4694-9447-39787076a2a9)
+![image](https://github.com/user-attachments/assets/19f31336-8982-467e-89f0-9b44ad2e4b58)
 
 ## 4. Tips around macros, data validation, and documentation
 

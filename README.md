@@ -63,8 +63,8 @@ The structure of this dbt project's models folder followed the [dbt best practic
        - card_transactions
 
 The staging models are available as views on Snowflake and the mart **card_transactions** is stored as a table. They are in the GLOBEPAY database with two possible schemas:
-- dbt_production: schema to be used by data analysts to perform analyzes and build dashboards
-- dbt_sandbox: schema to be used for testing and development
+- **dbt_production**: schema to be used by data analysts to perform analyzes and build dashboards
+- **dbt_sandbox**: schema to be used for testing and development
 
 Those schemas are associated to two different dbt profiles that are defined locally as "dev" and "prod".
 

@@ -53,14 +53,20 @@ Globepay reports are stored in snowflake as raw data. Then, they are used to bui
 The structure of the dbt project models folder followed the [dbt best practices documentation](https://docs.getdbt.com/best-practices/how-we-structure/1-guide-overview):
 
 - models
-   - staging
+   - staging (views)
        - stg_globepay__chargebacks: data from the chargeback report with new column aliases
        - stg_globepay__transactions: data from the acceptance report with new column aliases and timestamp/date transformation
        - stg_globepay__transaction_rates: data from the acceptance report with a flattened 
-    - intermediate
+    - intermediate (ephemeral)
        - int_card_transactions
-    - marts
+    - marts (table)
        - card_transactions
+
+The staging models are available as views on Snowflake and the mart **card_transactions** is stored as a table. They are in the GLOBEPAY database with two possible schemas:
+- dbt_production: schema to be used by data analysts to perform analyzes and build dashboards
+- dbt_sandbox: schema to be used for testing and development
+
+Those schemas are associated to two different dbt profiles that are defined locally as "dev" and "prod".
 
 ## 3. Lineage graphs
 
@@ -90,3 +96,7 @@ This is being used to test if the intermediate model [int_card_transactions](htt
 Useful documentation can be found here:
 - [dbt documentation](https://docs.getdbt.com/docs/build/documentation)
 - [Snowflake documentation](https://docs.snowflake.com/)
+
+## 5. Business questions
+
+Some business questions related to this project are answered [here]().

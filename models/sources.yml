@@ -1,0 +1,7 @@
+sources:
+  - name: globepay
+    database: globepay
+    schema: raw_data
+    tables:
+      - name: globepay_acceptance_report
+      - name: globepay_chargeback_report

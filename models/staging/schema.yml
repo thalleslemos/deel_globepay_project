@@ -1,0 +1,74 @@
+models:
+  - name: stg_globepay__chargebacks
+    description: "Raw data from Globepay Chargeback Report, except for the exchange rates."
+    columns:
+      - name: chargeback_id
+        description: "Primary key. Chargeback operation identificator."
+        data_tests:
+          - unique
+          - not_null
+      - name: chargeback_status
+        description: "Status column associated to the chargeback operation."
+      - name: payment_platform
+        description: "Name of the payment platform. It's usually 'GLOBALPAY'." 
+      - name: is_chargedback
+        description: "When TRUE, means the transaction amount has been refunded to the cardholder."
+  
+  - name: stg_globepay__transactions
+    description: "Raw data from Globepay Acceptance Report."
+    columns:
+      - name: transaction_id
+        description: "Primary key. Credit card transaction identificator."
+        data_tests:
+          - unique
+          - not_null
+      - name: transaction_timestamp_tz
+        description: "Timestamp of the transaction with timezone identification."
+      - name: transaction_date
+        description: "Transaction date in the format 'YYYY-mm-dd'."
+      - name: transaction_year_month
+        description: "Transaction date in the format 'YYYY-mm'."
+      - name: transaction_year
+        description: "Transaction date in the format 'YYYY'."
+      - name: transaction_month
+        description: "Transaction date in the format 'mm'."
+      - name: transaction_day
+        description: "Transaction date in the format 'dd'."
+      - name: transaction_time
+        description: "Transaction date in the format 'HH24:mm'."
+      - name: transaction_hour
+        description: "Transaction date in the format 'HH24'."
+      - name: chargeback_id
+        description: "Chargeback operation identificator."
+      - name: transaction_status
+        description: "Status column associated to the transaction."
+      - name: payment_platform
+        description: "Name of the payment platform. It's usually 'GLOBALPAY'." 
+      - name: transaction_state
+        description: "If the transaction was accepted, the status is 'ACCEPTED'. Otherwise, it is 'DECLINED'."
+        data_tests:
+          - accepted_values:
+              values: ["ACCEPTED", "DECLINED"]
+      - name: is_cvv_provided
+        description: "When TRUE, the CVV value has been provided."
+      - name: amount
+        description: "The amount that has been charged from the card."
+      - name: country
+        description: "The two-character ISO country code of the card."
+      - name: currency
+        description: "The three-character ISO currency code."
+  
+  - name: stg_globepay__transaction_rates
+    description: "Exchange rates data for each transaction from Globepay Transaction Rates"
+    columns:
+      - name: id
+        description: "Primary key. It is the concatenation between the transaction_id and the available currencies data for that transaction."
+        data_tests:
+          - unique
+          - not_null
+      - name: transaction_id
+        description: "Credit card transaction identificator."
+      - name: currency
+        description: "One of all the currencies available for that transaction. Represented by the three-character ISO currency code"
+      - name: exchange_rate_to_usd
+        description: "Exchange rate needed to convert the amount to usd"

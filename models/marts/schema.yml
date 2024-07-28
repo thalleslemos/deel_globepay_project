@@ -1,6 +1,6 @@
 models:
-  - name: credit_card_transactions
-    description: "Credit card transactions data"
+  - name: card_transactions
+    description: "Card transactions data"
     columns:
       - name: transaction_id
         description: "Primary key for this table"

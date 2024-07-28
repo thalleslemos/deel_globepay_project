@@ -1,6 +1,6 @@
 models:
-  - name: int_credit_card_transactions
-    description: "Credit card transactions data from Globepay"
+  - name: int_card_transactions
+    description: "Card transactions data from Globepay"
     columns:
       - name: transaction_id
         description: "Primary key for this table"

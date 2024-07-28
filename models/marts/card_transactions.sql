@@ -2,4 +2,4 @@
 
 SELECT *
 
-FROM {{ ref('int_credit_card_transactions') }}
+FROM {{ ref('int_card_transactions') }}

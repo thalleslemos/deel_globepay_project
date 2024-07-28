@@ -18,7 +18,7 @@ models:
     description: "Raw data from Globepay Acceptance Report."
     columns:
       - name: transaction_id
-        description: "Primary key. Credit card transaction identificator."
+        description: "Primary key. Card transaction identificator."
         data_tests:
           - unique
           - not_null
@@ -67,7 +67,7 @@ models:
           - unique
           - not_null
       - name: transaction_id
-        description: "Credit card transaction identificator."
+        description: "Card transaction identificator."
       - name: currency
         description: "One of all the currencies available for that transaction. Represented by the three-character ISO currency code"
       - name: exchange_rate_to_usd
